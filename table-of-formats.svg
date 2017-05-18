@@ -27,7 +27,7 @@
       <stop
          id="stop4878"
          offset="0.46973023"
-         style="stop-color:#ffff7d;stop-opacity:1" />
+         style="stop-color:#e3e3e3;stop-opacity:1" />
       <stop
          style="stop-color:#ffffff;stop-opacity:1"
          offset="1"
@@ -65,9 +65,9 @@
        inkscape:collect="always"
        xlink:href="#linearGradient4862"
        id="linearGradient4868"
-       x1="106.85281"
+       x1="101.85281"
        y1="142.86533"
-       x2="446.55481"
+       x2="449.55481"
        y2="142.86533"
        gradientUnits="userSpaceOnUse" />
   </defs>
@@ -117,10 +117,10 @@
     <rect
        style="color:#000000;fill:url(#linearGradient4868);fill-opacity:1;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4860"
-       width="340.24307"
-       height="160.15186"
-       x="106.42548"
-       y="62.792244"
+       width="345.24307"
+       height="164.15186"
+       x="101.42548"
+       y="58.792244"
        transform="translate(48.5625,318.78125)" />
     <text
        xml:space="preserve"
@@ -197,7 +197,7 @@
        inkscape:connector-curvature="0" />
     <path
        style="color:#000000;fill:#fff4d9;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 289.0625,389.15625 c -12.14379,2.34308 -24.98323,9.66597 -28.53318,22.66563 -1.90327,6.96962 -0.7848,16.78935 7.6153,18.36653 23.73509,4.45644 48.00507,4.19837 72.04323,4.33468 11.76641,0.0667 24.19812,0.36672 35.16762,-4.10156 7.2244,-2.94276 9.96146,-14.62596 1.91399,-19.1382 -14.00268,-7.85134 -27.08857,-17.87052 -42.7324,-22.48028 -14.88755,-4.38691 -30.63468,-2.51008 -45.47456,0.3532 z"
+       d="m 289.0625,389.15625 c -12.14379,2.34308 -24.98323,9.66597 -28.53318,22.66563 -1.90327,6.96962 -0.7848,16.78935 7.6153,18.36653 23.73509,4.45644 48.00507,4.19837 72.04323,4.33468 11.76641,0.0667 24.19812,0.36672 35.16762,-4.10156 7.2244,-2.94276 9.96146,-20.12596 1.91399,-24.6382 -14.00268,-7.85134 -27.08857,-12.37052 -42.7324,-16.98028 -14.88755,-4.38691 -30.63468,-2.51008 -45.47456,0.3532 z"
        id="path4787"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ssssssss" />
@@ -349,7 +349,7 @@
          x="318.57144"
          id="tspan4777"
          sodipodi:role="line"
-         style="line-height:100%">Varlength,</tspan><tspan
+         style="line-height:100%">Varlength of</tspan><tspan
          y="426.57648"
          x="318.57144"
          sodipodi:role="line"
