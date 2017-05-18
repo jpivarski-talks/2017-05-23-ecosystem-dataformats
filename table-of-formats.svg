@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="481.07098"
-   height="254.42862"
+   width="462.30203"
+   height="230.49773"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -79,8 +79,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="246.96285"
-     inkscape:cy="90.881746"
+     inkscape:cx="228.46285"
+     inkscape:cy="90.450856"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -113,7 +113,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-24.429014,-297.72762)">
+     transform="translate(-42.929014,-321.22762)">
     <rect
        style="color:#000000;fill:url(#linearGradient4868);fill-opacity:1;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4860"
@@ -125,44 +125,44 @@
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
-       x="126.42857"
+       x="142.42857"
        y="426.58987"
        id="text2985"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2987"
-         x="126.42857"
+         x="142.42857"
          y="426.58987">row-wise</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text2989"
        y="506.58987"
-       x="126.42857"
+       x="142.42857"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
        xml:space="preserve"><tspan
          y="506.58987"
-         x="126.42857"
+         x="142.42857"
          id="tspan2991"
          sodipodi:role="line">columnar</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
        x="235.161"
-       y="360.93362"
+       y="368.93362"
        id="text2993"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2995"
          x="235.161"
-         y="360.93362">flat tables</tspan></text>
+         y="368.93362">flat tables</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text2997"
-       y="360.93362"
+       y="368.93362"
        x="404.797"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
        xml:space="preserve"><tspan
-         y="360.93362"
+         y="368.93362"
          x="404.797"
          id="tspan2999"
          sodipodi:role="line">nested structures</tspan></text>
@@ -420,53 +420,37 @@
          id="tspan3939"
          sodipodi:role="line">Numpy</tspan></text>
     <path
-       style="color:#000000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 155,328.79075 0,212.85715"
-       id="path3007"
-       inkscape:connector-curvature="0" />
-    <path
        inkscape:connector-curvature="0"
        id="path3009"
-       d="m 315,328.79075 0,212.85715"
-       style="color:#000000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-    <path
-       id="path3011"
+       d="m 315,347.79075 0,193.85715"
        style="color:#000000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 495,328.79075 0,212.85715 -436.428571,0"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc" />
+       sodipodi:nodetypes="cc" />
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path3013"
-       d="M 58.571429,461.6479 495,461.6479"
+       d="M 74.071429,461.6479 495,461.6479"
        style="color:#000000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-    <path
-       style="color:#000000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="M 58.571429,381.6479 495,381.6479"
-       id="path3015"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
     <text
        sodipodi:linespacing="125%"
        id="text4880"
-       y="317.93362"
+       y="341.43362"
        x="315.15848"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
        xml:space="preserve"><tspan
-         y="317.93362"
+         y="341.43362"
          x="315.15848"
          id="tspan4882"
          sodipodi:role="line">what it means</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4884"
-       y="44.635014"
+       y="63.135014"
        x="-461.65259"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
        xml:space="preserve"
        transform="matrix(0,-1,1,0,0,0)"><tspan
-         y="44.635014"
+         y="63.135014"
          x="-461.65259"
          id="tspan4886"
          sodipodi:role="line">how it's stored</tspan></text>
