@@ -110,29 +110,45 @@ But we're mostly interested in the binary ones with schemas:
 \begin{columns}
 \begin{column}{0.55\linewidth}
 \begin{itemize}
-\item<1-> All block-array storage is nearly the same: every format packs floating point numbers on disk with optional compression.
+\item<1-> Formats differ most in how nested structure is represented:
+\small
 
-\item<2-> Nested structures differ in how they're stored, but still there may be more variation among use-cases than formats.
+\vspace{0.1 cm}
+\textcolor{darkblue}{ROOT:} each leaf is contiguous with list sizes in a separate array
 
-\item<3-> The other performance question: read/write speed, depends greatly on what objects are being filled.
+\textcolor{darkblue}{Avro:} whole records are contiguous
+
+\textcolor{darkblue}{Parquet:} each leaf is contiguous with depth in ``repetition levels''
+
+\normalsize
+\item<2-> Nevertheless, differences (with gzip/deflate) are only $\sim$20\%. Use-cases may have more variation than choice of format.
+
+\item<3-> Read speed depends greatly on what objects are being created.
 
 \scriptsize
-\vspace{0.25 cm}
-E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java library in 8.3~sec. But if you just read through the row-wise data and fill minimalist objects in C, it's 5.4~sec.
+\vspace{0.1 cm}
+E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java library in 8.3~sec! But if you just read through the row-wise data and fill minimalist objects in C, it's 5.4~sec.
 
 \end{itemize}
 \end{column}
 \uncover<2->{\vrule{}}
 \begin{column}{0.5\linewidth}
-\begin{uncoverenv}<2->
-\scriptsize
-47\,407 $t\bar{t}$ Monte Carlo events in {\tt TClonesArrays} or variable-length lists of custom classes.
+\begin{onlyenv}<1>
+\begin{center}
+\includegraphics[width=0.5\linewidth]{columnar.png}
+\end{center}
+\end{onlyenv}
+\begin{onlyenv}<2->
+\begin{center}
+\begin{minipage}{0.9\linewidth}
+\scriptsize 47\,407 $t\bar{t}$ Monte Carlo events in {\tt TClonesArrays} or variable-length lists of custom classes.
 
 \vspace{0.1 cm}
-ROOT 6.06/08, Avro 1.8.1, Parquet 1.8.1.
+ROOT 6.06, Avro 1.8.1, Parquet 1.8.1.
+\end{minipage}
 
-\normalsize
-\begin{center}
+\vspace{0.5 cm}
+\small
 \begin{tabular}{l c c}
 format         & MB  & rel. \\\hline
 ROOT none      & 399 & 1.96 \\
@@ -148,7 +164,7 @@ Parquet snappy & 200 & 0.98 \\
 Parquet gzip   & 176 & 0.86 \\
 \end{tabular}
 \end{center}
-\end{uncoverenv}
+\end{onlyenv}
 \end{column}
 \end{columns}
 \end{frame}
