@@ -84,25 +84,27 @@
 
 \begin{frame}{The landscape of generic containers}
 \vspace{0.25 cm}
-``Generic'' file formats are like XML and JSON; can hold anything.
-
-\vspace{0.25 cm}
-But we're mostly interested in the binary ones with schemas:
+\small By ``generic,'' I mean file formats that define general structures that we can specialize for particular kinds of data, like XML and JSON, but we're interested in binary formats with schemas for efficient numerical storage.
 
 \vspace{0.25 cm}
 \mbox{\hspace{-0.75 cm}\includegraphics[width=1.15\linewidth]{table-of-formats.pdf}}
 \end{frame}
 
 \begin{frame}{The landscape of generic containers}
-\vspace{0.25 cm}
-\begin{description}\setlength{\itemsep}{0.25 cm}
-\item[ROOT:] can do anything with the right settings
-\item[HDF5:] stores block-arrays very well, good for flat ntuples; can do e.g.\ lists of particles (``variable-length arrays of compounds''), but not with columnar storage (?)
-\item[Numpy:] usually in-memory, but has an efficient file format; only for block-arrays (exceptions not worth using)
-\item[Avro et al:] interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
-\item[Parquet:] extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
-\item[Arrow:] in-memory extension of the above, intended for zero-copy communication among databases, query servers, analysis frameworks, etc.
+\vspace{0.5 cm}
+\mbox{\hspace{-0.75 cm}\begin{minipage}{1.1\linewidth}
+\begin{description}\setlength{\itemsep}{0.15 cm}
+\item[ROOT:]<1-> can do anything with the right settings
+\item[HDF5:]<2-> stores block-arrays very well, good for flat ntuples; can do e.g.\ lists of particles (``variable-length arrays of compounds''), but not with columnar storage \textcolor{gray}{(am I wrong?)}
+\item[Numpy:]<3-> usually in-memory, but has an efficient file format; only for block-arrays \textcolor{gray}{(exceptions are not good for large datasets)}
+\item[Avro et al:]<4-> interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
+\item[Parquet:]<5-> extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
+\item[Arrow:]<6-> in-memory extension of Parquet \\ intended for zero-copy \\ communication among \\ databases, query servers, \\ analysis frameworks, etc.
 \end{description}
+\end{minipage}\hspace{-0.75 cm}}
+
+\vspace{-2.5 cm}
+\hfill\includegraphics[width=0.5\linewidth]{table-of-formats.pdf}\hspace{-0.9 cm}
 \end{frame}
 
 \begin{frame}{Is there a performance penalty?}
