@@ -95,8 +95,8 @@
 \mbox{\hspace{-0.75 cm}\begin{minipage}{1.1\linewidth}
 \begin{description}\setlength{\itemsep}{0.15 cm}
 \item[ROOT:]<1-> can do anything with the right settings
-\item[HDF5:]<2-> stores block-arrays very well, good for flat ntuples; can do e.g.\ lists of particles (``variable-length arrays of compounds''), but not with columnar storage \textcolor{gray}{(am I wrong?)}
-\item[Numpy:]<3-> usually in-memory, but has an efficient file format; only for block-arrays \textcolor{gray}{(exceptions are not good for large datasets)}
+\item[HDF5:]<2-> stores block-arrays very well, good for flat ntuples; can use variable-length arrays of compounds to store e.g.\ lists of particles, but not in an efficient, columnar way \textcolor{gray}{(?)}
+\item[Numpy:]<3-> usually in-memory, but has an efficient file format; only for block-arrays \textcolor{gray}{(can hold Python objects, but not efficiently)}
 \item[Avro et al:]<4-> interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
 \item[Parquet:]<5-> extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
 \item[Arrow:]<6-> in-memory extension of Parquet \\ intended for zero-copy \\ communication among \\ databases, query servers, \\ analysis frameworks, etc.
@@ -112,7 +112,7 @@
 \begin{columns}
 \begin{column}{0.55\linewidth}
 \begin{itemize}
-\item<1-> Formats differ most in how nested structure is represented:
+\item<1-> Formats differ most in how {\it nested} structure is represented:
 \small
 
 \vspace{0.1 cm}
@@ -125,11 +125,11 @@
 \normalsize
 \item<2-> Nevertheless, differences (with gzip/deflate) are only $\sim$20\%. Use-cases may have more variation than choice of format.
 
-\item<3-> Read speed depends greatly on what objects are being created.
+\item<3-> Speed depends more on runtime representation than file format.
 
 \scriptsize
 \vspace{0.1 cm}
-E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java library in 8.3~sec! But if you just read through the row-wise data and fill minimalist objects in C, it's 5.4~sec.
+E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java library in 8.3~sec! But if Avro's C library reads through the same row-wise data and fills {\it minimalist} objects, it's 5.4~sec.
 
 \end{itemize}
 \end{column}
@@ -139,6 +139,7 @@ E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java l
 \begin{center}
 \includegraphics[width=0.5\linewidth]{columnar.png}
 \end{center}
+\vspace{1 cm}
 \end{onlyenv}
 \begin{onlyenv}<2->
 \begin{center}
@@ -149,7 +150,7 @@ E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java l
 ROOT 6.06, Avro 1.8.1, Parquet 1.8.1.
 \end{minipage}
 
-\vspace{0.5 cm}
+\vspace{0.25 cm}
 \small
 \begin{tabular}{l c c}
 format         & MB  & rel. \\\hline
@@ -165,23 +166,26 @@ Parquet none   & 210 & 1.03 \\
 Parquet snappy & 200 & 0.98 \\
 \textcolor{darkblue}{Parquet gzip}   & \textcolor{darkblue}{176} & \textcolor{darkblue}{0.86} \\
 \end{tabular}
+
+\vspace{0.25 cm}
+\scriptsize I don't have a grand study of all formats.
 \end{center}
 \end{onlyenv}
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{What matters more is how you'll use it}
+\begin{frame}{What matters is what you'll use it with}
 \vspace{0.5 cm}
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{r p{0.7\linewidth}}
-\textcolor{darkblue}{ROOT} & is the best way to access petabytes of HEP data and use tools developed in HEP \\\hline
-\textcolor{darkblue}{HDF5} & is the best way to use tools developed in other sciences, particuarly R, MATLAB \\\hline
-\textcolor{darkblue}{Numpy} & is the best way to use the scientific Python ecosystem, particularly recent machine learning software \\\hline
-\textcolor{darkblue}{Avro et al} & is the best way to use the Hadoop ecosystem, particularly streaming frameworks \\\hline
-\textcolor{darkblue}{Parquet} & is the best way to use database-like tools in the Hadoop ecosystem, such as SparkSQL \\\hline
-\textcolor{darkblue}{Arrow} & is in its infancy, but is already a good way to share data between Python (Pandas) DataFrames and R DataFrames \\
+\textcolor{darkblue}{ROOT} & is the best way to access petabytes of \only<1>{\textcolor{black}{\mbox{HEP data}}}\only<2>{\textcolor{red}{\underline{HEP data}}} and use tools developed in HEP \\\hline
+\textcolor{darkblue}{HDF5} & is the best way to use tools developed in \only<1>{\textcolor{black}{\mbox{other sciences}}}\only<2>{\textcolor{red}{\underline{other sciences}}}, particuarly R, MATLAB, HPC \\\hline
+\textcolor{darkblue}{Numpy} & is the best way to use the scientific Python ecosystem, particularly recent \only<1>{\textcolor{black}{\mbox{machine learning}}}\only<2>{\textcolor{red}{\underline{machine learning}}} software \\\hline
+\textcolor{darkblue}{Avro et al} & is the best way to use the \only<1>{\textcolor{black}{\mbox{Hadoop ecosystem}}}\only<2>{\textcolor{red}{\underline{Hadoop ecosystem}}}, particularly streaming frameworks like Storm \\\hline
+\textcolor{darkblue}{Parquet} & is the best way to use \only<1>{\textcolor{black}{\mbox{database-like}}}\only<2>{\textcolor{red}{\underline{database-like}}} tools in the Hadoop ecosystem, such as SparkSQL \\\hline
+\textcolor{darkblue}{Arrow} & is in its infancy, but is already a good way to \only<1>{\textcolor{black}{\mbox{share data}}}\only<2>{\textcolor{red}{\underline{share data}}} between Python (Pandas) DataFrames and R DataFrames \\
 \end{tabular}
 \end{center}
 \end{frame}
