@@ -84,7 +84,7 @@
 
 \begin{frame}{The landscape of generic containers}
 \vspace{0.25 cm}
-``Generic'' file formats like XML and JSON that can hold anything.
+``Generic'' file formats are like XML and JSON; can hold anything.
 
 \vspace{0.25 cm}
 But we're mostly interested in the binary ones with schemas:
@@ -92,5 +92,66 @@ But we're mostly interested in the binary ones with schemas:
 \vspace{0.25 cm}
 \mbox{\hspace{-0.75 cm}\includegraphics[width=1.15\linewidth]{table-of-formats.pdf}}
 \end{frame}
+
+\begin{frame}{The landscape of generic containers}
+\vspace{0.25 cm}
+\begin{description}\setlength{\itemsep}{0.25 cm}
+\item[ROOT:]<1-> can do anything with the right settings
+\item[HDF5:]<2-> stores block-arrays very well, good for flat ntuples; can do e.g.\ lists of particles (``variable-length arrays of compounds''), but not with columnar storage (?)
+\item[Numpy:]<3-> usually in-memory, but has an efficient file format; only for block-arrays (exceptions not worth using)
+\item[Avro et al:]<4-> interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
+\item[Parquet:]<5-> extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
+\item[Arrow:]<6-> in-memory extension of the above, intended for zero-copy communication among databases, query servers, analysis frameworks, etc.
+\end{description}
+\end{frame}
+
+\begin{frame}{File size?}
+\vspace{0.35 cm}
+\begin{columns}
+\begin{column}{0.55\linewidth}
+\begin{itemize}
+\item<1-> All block-array storage is nearly the same: every format packs floating point numbers on disk with optional compression.
+
+\item<2-> Nested structures differ in how they're stored, but still there may be more variation among use-cases than formats.
+
+\item<3-> The other performance question: read/write speed, depends greatly on what objects are being filled.
+
+\scriptsize
+\vspace{0.25 cm}
+E.g.\ Avro's C library loads into its custom C objects in 113~sec; Avro's Java library in 8.3~sec. But if you just read through the row-wise data and fill minimalist objects in C, it's 5.4~sec.
+
+\end{itemize}
+\end{column}
+\uncover<2->{\vrule{}}
+\begin{column}{0.5\linewidth}
+\begin{uncoverenv}<2->
+\scriptsize
+47\,407 $t\bar{t}$ Monte Carlo events in {\tt TClonesArrays} or variable-length lists of custom classes.
+
+\vspace{0.1 cm}
+ROOT 6.06/08, Avro 1.8.1, Parquet 1.8.1.
+
+\normalsize
+\begin{center}
+\begin{tabular}{l c c}
+format         & MB  & rel. \\\hline
+ROOT none      & 399 & 1.96 \\
+ROOT gzip 1    & 204 & 1.00 \\
+ROOT gzip 2    & 208 & 1.02 \\
+ROOT gzip 9    & 202 & 0.99 \\\hline
+Avro none      & 237 & 1.16 \\
+Avro snappy    & 198 & 0.97 \\
+Avro deflate   & 180 & 0.88 \\
+Avro LZMA      & 169 & 0.83 \\\hline
+Parquet none   & 210 & 1.03 \\
+Parquet snappy & 200 & 0.98 \\
+Parquet gzip   & 176 & 0.86 \\
+\end{tabular}
+\end{center}
+\end{uncoverenv}
+\end{column}
+\end{columns}
+\end{frame}
+
 
 \end{document}
