@@ -60,7 +60,7 @@
   morestring=[b]"""
 }
 
-\title[2017-05-23-ecosystem-dataformats]{Survey of data formats, conversion tools}
+\title[2017-05-23-ecosystem-dataformats]{Survey of data formats and conversion tools}
 \author{Jim Pivarski}
 \institute{Princeton University -- DIANA}
 \date{May 23, 2017}
@@ -96,16 +96,16 @@ But we're mostly interested in the binary ones with schemas:
 \begin{frame}{The landscape of generic containers}
 \vspace{0.25 cm}
 \begin{description}\setlength{\itemsep}{0.25 cm}
-\item[ROOT:]<1-> can do anything with the right settings
-\item[HDF5:]<2-> stores block-arrays very well, good for flat ntuples; can do e.g.\ lists of particles (``variable-length arrays of compounds''), but not with columnar storage (?)
-\item[Numpy:]<3-> usually in-memory, but has an efficient file format; only for block-arrays (exceptions not worth using)
-\item[Avro et al:]<4-> interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
-\item[Parquet:]<5-> extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
-\item[Arrow:]<6-> in-memory extension of the above, intended for zero-copy communication among databases, query servers, analysis frameworks, etc.
+\item[ROOT:] can do anything with the right settings
+\item[HDF5:] stores block-arrays very well, good for flat ntuples; can do e.g.\ lists of particles (``variable-length arrays of compounds''), but not with columnar storage (?)
+\item[Numpy:] usually in-memory, but has an efficient file format; only for block-arrays (exceptions not worth using)
+\item[Avro et al:] interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
+\item[Parquet:] extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
+\item[Arrow:] in-memory extension of the above, intended for zero-copy communication among databases, query servers, analysis frameworks, etc.
 \end{description}
 \end{frame}
 
-\begin{frame}{File size?}
+\begin{frame}{Is there a performance penalty?}
 \vspace{0.35 cm}
 \begin{columns}
 \begin{column}{0.55\linewidth}
@@ -114,9 +114,9 @@ But we're mostly interested in the binary ones with schemas:
 \small
 
 \vspace{0.1 cm}
-\textcolor{darkblue}{ROOT:} each leaf is contiguous with list sizes in a separate array
-
 \textcolor{darkblue}{Avro:} whole records are contiguous
+
+\textcolor{darkblue}{ROOT:} each leaf is contiguous with list sizes in a separate array
 
 \textcolor{darkblue}{Parquet:} each leaf is contiguous with depth in ``repetition levels''
 
@@ -169,5 +169,24 @@ Parquet snappy & 200 & 0.98 \\
 \end{columns}
 \end{frame}
 
+\begin{frame}{What matters more is how you'll use it}
+\vspace{0.5 cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{r p{0.7\linewidth}}
+\textcolor{darkblue}{ROOT} & is the best way to access petabytes of HEP data and use tools developed in HEP \\\hline
+\textcolor{darkblue}{HDF5} & is the best way to use tools developed in other sciences, particuarly R, MATLAB \\\hline
+\textcolor{darkblue}{Numpy} & is the best way to use the scientific Python ecosystem, particularly recent machine learning software \\\hline
+\textcolor{darkblue}{Avro et al} & is the best way to use the Hadoop ecosystem, particularly streaming frameworks \\\hline
+\textcolor{darkblue}{Parquet} & is the best way to use database-like tools in the Hadoop ecosystem, such as SparkSQL \\\hline
+\textcolor{darkblue}{Arrow} & is in its infancy, but is already a good way to share data between Python (Pandas) DataFrames and R DataFrames \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Conversions: getting from here to there}
+\vspace{0.5 cm}
+\mbox{\hspace{-0.75 cm}\only<1>{\includegraphics[width=1.15\linewidth]{conversions3.pdf}}\only<2>{\includegraphics[width=1.15\linewidth]{conversions4.pdf}}\only<3>{\includegraphics[width=1.15\linewidth]{conversions5.pdf}}}
+\end{frame}
 
 \end{document}
