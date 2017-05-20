@@ -195,4 +195,76 @@ Parquet snappy & 200 & 0.98 \\
 \mbox{\hspace{-0.75 cm}\only<1>{\includegraphics[width=1.15\linewidth]{conversions3.pdf}}\only<2>{\includegraphics[width=1.15\linewidth]{conversions4.pdf}}\only<3>{\includegraphics[width=1.15\linewidth]{conversions5.pdf}}}
 \end{frame}
 
+\begin{frame}[fragile]{root\_numpy: mature! use it!}
+\begin{center}
+\textcolor{blue}{\underline{\url{http://scikit-hep.org/root_numpy}}}
+\end{center}
+
+\footnotesize
+\begin{minted}{python}
+import root_numpy
+
+# get an array from a ROOT file named by string
+filename = root_numpy.testdata.get_filepath("test.root")
+array1 = root_numpy.root2array(filename, "tree")
+
+# or get an array from a PyROOT TFile/TTree
+import ROOT
+rootfile = ROOT.TFile(filename)
+roottree = rootfile.Get("tree")
+array2 = root_numpy.tree2array(roottree)
+\end{minted}
+
+\vspace{0.5 cm}
+{\normalsize Use {\tt TTree::Draw} syntax to transform branches and cut events.}
+
+\begin{minted}{python}
+array3 = root_numpy.tree2array(roottree,
+    branches=["x", "y", "sqrt(y)", "TMath::Landau(x)"],
+    selection="z > 0")
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{c2numpy: used in a handful of projects}
+\vspace{0.5 cm}
+Pure-header C library: drop it in and write Numpy files.
+
+\begin{center}
+\textcolor{blue}{\underline{\url{https://github.com/diana-hep/c2numpy}}}
+\end{center}
+
+\scriptsize
+\begin{minted}{c++}
+#include "c2numpy.h"
+
+c2numpy_init(&writer, "output/tracks", 1000);
+c2numpy_addcolumn(&writer, "pt", C2NUMPY_FLOAT64);
+c2numpy_addcolumn(&writer, "eta", C2NUMPY_FLOAT64);
+c2numpy_addcolumn(&writer, "phi", C2NUMPY_FLOAT64);
+
+...
+
+for (auto track = tracks->cbegin();
+     track != tracks->end();
+     ++track) {
+  c2numpy_float64(&writer, track->pt());
+  c2numpy_float64(&writer, track->eta());
+  c2numpy_float64(&writer, track->phi());
+}
+\end{minted}
+\end{frame}
+
+\begin{frame}{Zero-copy between CMSSW and Numpy}
+\vspace{0.5 cm}
+First demonstration last week; may become a common tool.
+
+\begin{center}
+\textcolor{blue}{\tt c2numpy/commonblock}
+\end{center}
+
+\includegraphics[width=\linewidth]{direct-memory.png}
+\end{frame}
+
+
+
 \end{document}
