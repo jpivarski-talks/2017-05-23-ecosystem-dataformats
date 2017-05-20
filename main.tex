@@ -195,7 +195,7 @@ Parquet snappy & 200 & 0.98 \\
 \mbox{\hspace{-0.75 cm}\only<1>{\includegraphics[width=1.15\linewidth]{conversions3.pdf}}\only<2>{\includegraphics[width=1.15\linewidth]{conversions4.pdf}}\only<3>{\includegraphics[width=1.15\linewidth]{conversions5.pdf}}\only<4>{\includegraphics[width=1.15\linewidth]{conversions6.pdf}}}
 \end{frame}
 
-\begin{frame}[fragile]{ROOT is now a Spark DataFrame}
+\begin{frame}[fragile]{ROOT is now a Spark DataFrame format}
 \vspace{0.5 cm}
 Launch Spark with JARs from Maven Central (zero install).
 
@@ -207,7 +207,7 @@ pyspark --packages org.diana-hep:spark-root_2.11:0.1.11
 
 \normalsize
 \vspace{0.25 cm}
-Read ROOT files as you would any other DataFrame.
+Access the ROOT files as you would any other DataFrame.
 
 \footnotesize
 \begin{minted}{python}
@@ -286,13 +286,31 @@ go-hep        & Go & \textcolor{gray}{to use Go's concurrency} \\
 
 \vfill
 \begin{uncoverenv}<2->
-Popular file formats are usually fully specified and re-implemented in dozens of languages.
+Most file formats are fully specified in the abstract and then re-implemented in dozens of languages.
 
 \vspace{0.25 cm}
 But ROOT is much more complex than most file formats.
 \end{uncoverenv}
 \end{frame}
 
+\begin{frame}{Dreaming\ldots}
+\vspace{0.5 cm}
+\begin{block}{Serialization mini-languages:}
+DSLs that transform byte sequence $\to$ abstract data types
+\end{block}
+
+\begin{itemize}
+\item Construct: \textcolor{blue}{\underline{\url{http://construct.readthedocs.io}}}
+\item PADS: \textcolor{blue}{\underline{\url{http://pads.cs.tufts.edu}}}
+\item PacketTypes, DataScript, the ``Power of Pi'' paper\ldots                 
+\end{itemize}
+
+\vfill
+\uncover<2->{Even if these languages are too limited to implement ROOT I/O, could it be implemented in a {\it translatable} subset of a common language?}
+
+\vspace{0.25 cm}
+\uncover<3->{That is, a disciplined use of minimal language features, allowing for automated translation to C, Javascript, Java, Go\ldots?}
+\end{frame}
 
 
 
