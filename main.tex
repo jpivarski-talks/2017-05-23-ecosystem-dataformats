@@ -95,8 +95,8 @@
 \mbox{\hspace{-0.75 cm}\begin{minipage}{1.1\linewidth}
 \begin{description}\setlength{\itemsep}{0.15 cm}
 \item[ROOT:]<1-> can do anything with the right settings
-\item[HDF5:]<2-> stores block-arrays very well, good for flat ntuples; can use variable-length arrays of compounds to store e.g.\ lists of particles, but not in an efficient, columnar way \textcolor{gray}{(?)}
-\item[Numpy:]<3-> usually in-memory, but has an efficient file format; only for block-arrays \textcolor{gray}{(can hold Python objects, but not efficiently)}
+\item[HDF5:]<2-> stores block-arrays well, good for flat ntuples; can use variable-length arrays of compounds to store e.g.\ lists of particles, but not in an efficient, columnar way \textcolor{gray}{(?)}
+\item[Numpy:]<3-> usually in-memory, also has an efficient file format; only for block-arrays \textcolor{gray}{(can hold Python objects, but not efficiently)}
 \item[Avro et al:]<4-> interlingual, binary, deep structures with schemas, row-wise storage is best for streaming and RPC
 \item[Parquet:]<5-> extension of Avro et al with {\it columnar} storage, intended for databases and fast querying
 \item[Arrow:]<6-> in-memory extension of Parquet \\ intended for zero-copy \\ communication among \\ databases, query servers, \\ analysis frameworks, etc.
@@ -123,7 +123,7 @@
 \textcolor{darkblue}{Parquet:} each leaf is contiguous with depth in ``repetition levels''
 
 \normalsize
-\item<2-> Nevertheless, differences (with gzip/deflate) are only $\sim$20\%. Use-cases may have more variation than choice of format.
+\item<2-> Nevertheless, differences (with gzip/deflate) are only $\sim$15\%. {\it Use-cases} may have more variation than {\it choice of format.}
 
 \item<3-> Speed depends more on runtime representation than file format.
 
@@ -250,7 +250,7 @@ root
 
 \centering Tony Johnson
 
-\centering SLAC
+\centering {\small SLAC}
 \end{minipage}\hspace{-3.2 cm}}
 \end{center}
 \end{minipage}\hspace{1 cm}\vspace{3.5 cm}
