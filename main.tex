@@ -192,79 +192,153 @@ Parquet snappy & 200 & 0.98 \\
 
 \begin{frame}{Conversions: getting from here to there}
 \vspace{0.5 cm}
-\mbox{\hspace{-0.75 cm}\only<1>{\includegraphics[width=1.15\linewidth]{conversions3.pdf}}\only<2>{\includegraphics[width=1.15\linewidth]{conversions4.pdf}}\only<3>{\includegraphics[width=1.15\linewidth]{conversions5.pdf}}}
+\mbox{\hspace{-0.75 cm}\only<1>{\includegraphics[width=1.15\linewidth]{conversions3.pdf}}\only<2>{\includegraphics[width=1.15\linewidth]{conversions4.pdf}}\only<3>{\includegraphics[width=1.15\linewidth]{conversions5.pdf}}\only<4>{\includegraphics[width=1.15\linewidth]{conversions6.pdf}}}
 \end{frame}
 
-\begin{frame}[fragile]{root\_numpy: mature! use it!}
-\begin{center}
-\textcolor{blue}{\underline{\url{http://scikit-hep.org/root_numpy}}}
-\end{center}
+\begin{frame}[fragile]{ROOT is now a Spark DataFrame}
+\vspace{0.5 cm}
+Launch Spark with JARs from Maven Central (zero install).
+
+\vspace{-0.05 cm}
+\footnotesize
+\begin{minted}{bash}
+pyspark --packages org.diana-hep:spark-root_2.11:0.1.11
+\end{minted}
+
+\normalsize
+\vspace{0.25 cm}
+Read ROOT files as you would any other DataFrame.
 
 \footnotesize
 \begin{minted}{python}
-import root_numpy
-
-# get an array from a ROOT file named by string
-filename = root_numpy.testdata.get_filepath("test.root")
-array1 = root_numpy.root2array(filename, "tree")
-
-# or get an array from a PyROOT TFile/TTree
-import ROOT
-rootfile = ROOT.TFile(filename)
-roottree = rootfile.Get("tree")
-array2 = root_numpy.tree2array(roottree)
+df = sqlContext.read \
+       .format("org.dianahep.sparkroot") \
+       .load("hdfs://path/to/files/*.root")
 \end{minted}
 
-\vspace{0.5 cm}
-{\normalsize Use {\tt TTree::Draw} syntax to transform branches and cut events.}
-
-\begin{minted}{python}
-array3 = root_numpy.tree2array(roottree,
-    branches=["x", "y", "sqrt(y)", "TMath::Landau(x)"],
-    selection="z > 0")
-\end{minted}
+\begin{verbatim}
+df.printSchema()
+root
+ |-- met: float (nullable = false)
+ |-- muons: array (nullable = false)
+ |    |-- element: struct (containsNull = false)
+ |    |    |-- pt: float (nullable = false)
+ |    |    |-- eta: float (nullable = false)
+ |    |    |-- phi: float (nullable = false)
+ |-- jets: array (nullable = false)
+ |    |-- element: struct (containsNull = false)
+ |    |    |-- pt: float (nullable = false)
+\end{verbatim}
 \end{frame}
 
-\begin{frame}[fragile]{c2numpy: used in a handful of projects}
-\vspace{0.5 cm}
-Pure-header C library: drop it in and write Numpy files.
+\begin{frame}{}
 
+\only<1-2>{{\mbox{\hspace{-1 cm}\includegraphics[width=1.2\linewidth]{rootio-screenshot.png}}}}
+\only<3-4>{{\mbox{\hspace{-1 cm}\includegraphics[width=1.2\linewidth]{root4j.png}}}}
+
+\begin{onlyenv}<2>
+\vspace{-6.2 cm}\hfill\begin{minipage}{3 cm}
 \begin{center}
-\textcolor{blue}{\underline{\url{https://github.com/diana-hep/c2numpy}}}
+\mbox{\begin{minipage}{2.3 cm}
+\centering \includegraphics[width=2 cm]{tonyJohnson_new.jpg}
+
+\centering Tony Johnson
+
+\centering SLAC
+\end{minipage}\hspace{-3.2 cm}}
 \end{center}
-
-\scriptsize
-\begin{minted}{c++}
-#include "c2numpy.h"
-
-c2numpy_init(&writer, "output/tracks", 1000);
-c2numpy_addcolumn(&writer, "pt", C2NUMPY_FLOAT64);
-c2numpy_addcolumn(&writer, "eta", C2NUMPY_FLOAT64);
-c2numpy_addcolumn(&writer, "phi", C2NUMPY_FLOAT64);
-
-...
-
-for (auto track = tracks->cbegin();
-     track != tracks->end();
-     ++track) {
-  c2numpy_float64(&writer, track->pt());
-  c2numpy_float64(&writer, track->eta());
-  c2numpy_float64(&writer, track->phi());
-}
-\end{minted}
-\end{frame}
-
-\begin{frame}{Zero-copy between CMSSW and Numpy}
-\vspace{0.5 cm}
-First demonstration last week; may become a common tool.
-
+\end{minipage}\hspace{1 cm}\vspace{3.5 cm}
+\end{onlyenv}
+\begin{onlyenv}<4>
+\vspace{-3.5 cm}\hfill\begin{minipage}{3 cm}
 \begin{center}
-\textcolor{blue}{\tt c2numpy/commonblock}
-\end{center}
+\includegraphics[width=2 cm]{viktor.jpg}
 
-\includegraphics[width=\linewidth]{direct-memory.png}
+Viktor Khristenko
+
+{\small University of Iowa}
+\end{center}
+\end{minipage}\hspace{1 cm}\vspace{3.5 cm}
+\end{onlyenv}
+
 \end{frame}
 
 
+
+
+
+
+
+
+
+%% \begin{frame}[fragile]{root\_numpy: mature! use it!}
+%% \begin{center}
+%% \textcolor{blue}{\underline{\url{http://scikit-hep.org/root_numpy}}}
+%% \end{center}
+
+%% \footnotesize
+%% \begin{minted}{python}
+%% import root_numpy
+
+%% # get an array from a ROOT file named by string
+%% filename = root_numpy.testdata.get_filepath("test.root")
+%% array1 = root_numpy.root2array(filename, "tree")
+
+%% # or get an array from a PyROOT TFile/TTree
+%% import ROOT
+%% rootfile = ROOT.TFile(filename)
+%% roottree = rootfile.Get("tree")
+%% array2 = root_numpy.tree2array(roottree)
+%% \end{minted}
+
+%% \vspace{0.5 cm}
+%% {\normalsize Use {\tt TTree::Draw} syntax to transform branches and cut events.}
+
+%% \begin{minted}{python}
+%% array3 = root_numpy.tree2array(roottree,
+%%     branches=["x", "y", "sqrt(y)", "TMath::Landau(x)"],
+%%     selection="z > 0")
+%% \end{minted}
+%% \end{frame}
+
+%% \begin{frame}[fragile]{c2numpy: used in a handful of projects}
+%% \vspace{0.5 cm}
+%% Pure-header C library: drop it in and write Numpy files.
+
+%% \begin{center}
+%% \textcolor{blue}{\underline{\url{https://github.com/diana-hep/c2numpy}}}
+%% \end{center}
+
+%% \scriptsize
+%% \begin{minted}{c++}
+%% #include "c2numpy.h"
+
+%% c2numpy_init(&writer, "output/tracks", 1000);
+%% c2numpy_addcolumn(&writer, "pt", C2NUMPY_FLOAT64);
+%% c2numpy_addcolumn(&writer, "eta", C2NUMPY_FLOAT64);
+%% c2numpy_addcolumn(&writer, "phi", C2NUMPY_FLOAT64);
+
+%% ...
+
+%% for (auto track = tracks->cbegin();
+%%      track != tracks->end();
+%%      ++track) {
+%%   c2numpy_float64(&writer, track->pt());
+%%   c2numpy_float64(&writer, track->eta());
+%%   c2numpy_float64(&writer, track->phi());
+%% }
+%% \end{minted}
+%% \end{frame}
+
+%% \begin{frame}{Zero-copy between CMSSW and Numpy}
+%% \vspace{0.5 cm}
+%% First demonstration last week; may become a common tool.
+
+%% \begin{center}
+%% \textcolor{blue}{\tt c2numpy/commonblock}
+%% \end{center}
+
+%% \includegraphics[width=\linewidth]{direct-memory.png}
+%% \end{frame}
 
 \end{document}
