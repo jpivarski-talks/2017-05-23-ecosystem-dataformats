@@ -229,6 +229,12 @@ root
  |    |-- element: struct (containsNull = false)
  |    |    |-- pt: float (nullable = false)
 \end{verbatim}
+
+\vspace{-4 cm}
+\begin{uncoverenv}<2->
+\hfill\textcolor{darkblue}{\Large abstract type system!}\hspace{-1 cm}
+\end{uncoverenv}
+\vspace{4 cm}
 \end{frame}
 
 \begin{frame}{}
@@ -263,9 +269,29 @@ Viktor Khristenko
 
 \end{frame}
 
+\begin{frame}{ROOT I/O implementations}
+\vspace{0.5 cm}
+As far as I'm aware, root4j is one of only five ROOT-readers:
 
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{r | l c}
+standard ROOT & C++ & \\
+JsRoot        & JavaScript & \textcolor{gray}{for web browsers} \\
+\textcolor{darkblue}{root4j}        & \textcolor{darkblue}{Java} & \textcolor{gray}{can't link Java and ROOT} \\
+RIO in GEANT  & C++ & \textcolor{gray}{to minimize dependencies} \\
+go-hep        & Go & \textcolor{gray}{to use Go's concurrency} \\
+\end{tabular}
+\end{center}
 
+\vfill
+\begin{uncoverenv}<2->
+Popular file formats are usually fully specified and re-implemented in dozens of languages.
 
+\vspace{0.25 cm}
+But ROOT is much more complex than most file formats.
+\end{uncoverenv}
+\end{frame}
 
 
 
